@@ -1,0 +1,26 @@
+---
+#
+# Project:: Ansible Role - CHANGEME
+#
+# Copyright 2020, Route 1337, LLC, All Rights Reserved.
+#
+# Maintainers:
+# - Matthew Ahrenstein: matthew@route1337.com
+#
+# See LICENSE
+#
+
+galaxy_info:
+  role_name: "CHANGEME"
+  author: "Matthew Ahrenstein"
+  description: "CHANGEME"
+  company: "Route 1337, LLC"
+  license: "license (MIT)"
+  min_ansible_version: "2.4"
+  platforms:
+    - name: Ubuntu
+      versions:
+        - xenial
+        - bionic
+  galaxy_tags:
+    - CHANGEME
