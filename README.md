@@ -16,15 +16,14 @@ motd and issue.net for users that SSH in to the server with a rather boilerplate
 2. Configure a login banner
     1. Sets the `/etc/motd` file to a standardized login banner
     2. Sets the `/etc/issue.net` file to a standardized login banner
-    3. Remote the `update-motd` package so that the custom motd doesn't get overridden
-
+    3. Remove the `update-motd` package so that the custom motd doesn't get overridden
 
 Variables
 ---------
 The following variables are optional:
 
-1. `ssh_config.configuration` - Sets the SSH configuration to `Hardened` or `Standard`. If the string does not match `Hardened`
-it defaults to Standard
+1. `ssh_config.configuration` - Sets the SSH configuration to `Standard` or `Hardened`. If the string does not match `Hardened`
+it defaults to the Standard configuration
 2. `ssh_config.orgname` - Sets the company name shown in the login banner. If undefined the default is `Route 1337, LLC`
 
 Testing
