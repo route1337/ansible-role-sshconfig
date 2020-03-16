@@ -1,6 +1,6 @@
 ---
 #
-# Project:: Ansible Role - CHANGEME
+# Project:: Ansible Role - SSH Config
 #
 # Copyright 2020, Route 1337, LLC, All Rights Reserved.
 #
@@ -26,7 +26,7 @@ platforms:
   - name: ubuntu-18.04
 
 suites:
-  - name: CHANGEME
+  - name: standard
     provisioner:
       require_ansible_repo: true
       require_ansible_source: false
@@ -34,7 +34,19 @@ suites:
       hosts: kitchen
       roles_path: .
       ansible_inventory: tests/inventory
-      host_vars_path: tests/host_vars/CHANGEME
+      host_vars_path: tests/host_vars/standard/standard
     verifier:
       inspec_tests:
-      - tests/smoke/repo-role/default
+      - tests/smoke/repo-role/standard
+  - name: hardened
+    provisioner:
+      require_ansible_repo: true
+      require_ansible_source: false
+      playbook: tests/playbooks/repo-role.yml
+      hosts: kitchen
+      roles_path: .
+      ansible_inventory: tests/inventory
+      host_vars_path: tests/host_vars/hardened
+    verifier:
+      inspec_tests:
+        - tests/smoke/repo-role/hardened

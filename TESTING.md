@@ -1,4 +1,4 @@
-Ansible Role - CHANGEME: Testing
+Ansible Role - SSH Config: Testing
 ===================================
 All Route 1337, LLC Ansible roles are tested via Test Kitchen.
 

@@ -10,9 +10,8 @@
 # See LICENSE
 #
 
-# Handlers used for various tasks in this role
+# Default settings for the role's variables
 
-- name: restart ssh
-  service:
-    name: sshd
-    state: restarted
+ssh_config:
+  configuration: "Standard"
+  orgname: "Route 1337, LLC"

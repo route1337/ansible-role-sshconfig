@@ -1,4 +1,4 @@
-# CODEOWNERS for Ansible Role - CHANGEME
+# CODEOWNERS for Ansible Role - SSH Config
 
 # Catch all for unspecified items
 # This is listed first as CODEOWNERS is chained bottom to top

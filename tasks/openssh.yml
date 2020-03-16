@@ -1,0 +1,35 @@
+---
+#
+# Project:: Ansible Role - SSH Config
+#
+# Copyright 2020, Route 1337, LLC, All Rights Reserved.
+#
+# Maintainers:
+# - Matthew Ahrenstein: matthew@route1337.com
+#
+# See LICENSE
+#
+
+# Configure OpenSSH Server with either standard or hardened configs
+
+- name: Configure OpenSSH with the Standard configuration
+  template:
+    src: 'sshd_standard.j2'
+    dest: '/etc/ssh/sshd_config'
+    owner: root
+    group: root
+    mode: 0644
+  when: ssh_config.configuration != "Hardened"
+  notify:
+    - restart ssh
+
+- name: Configure OpenSSH with the Hardened configuration
+  template:
+    src: 'sshd_hardened.j2'
+    dest: '/etc/ssh/sshd_config'
+    owner: root
+    group: root
+    mode: 0644
+  when: ssh_config.configuration == "Hardened"
+  notify:
+    - restart ssh
