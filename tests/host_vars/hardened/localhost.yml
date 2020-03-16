@@ -10,9 +10,10 @@
 # See LICENSE
 #
 
-# Handlers used for various tasks in this role
+# Testing variables for Linux Users
 
-- name: restart ssh
-  service:
-    name: sshd
-    state: restarted
+# Testing the Hardened configuration with an alternate org name
+
+ssh_config:
+  configuration: 'Hardened'
+  orgname: 'Route 1337, Inc'

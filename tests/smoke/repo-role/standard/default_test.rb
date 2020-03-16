@@ -1,6 +1,5 @@
----
 #
-# Project:: Ansible Role - CHANGEME
+# Project:: Ansible Role - SSH Config
 #
 # Copyright 2020, Route 1337, LLC, All Rights Reserved.
 #
@@ -10,7 +9,4 @@
 # See LICENSE
 #
 
-# Manage prerequisites for this role
-
-- name: CHANGEME
-  command: echo "CHANGEME"
+# There should be no code here

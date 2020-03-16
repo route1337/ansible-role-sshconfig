@@ -1,6 +1,6 @@
 ---
 #
-# Project:: Ansible Role - CHANGEME
+# Project:: Ansible Role - SSH Config
 #
 # Copyright 2020, Route 1337, LLC, All Rights Reserved.
 #
@@ -11,9 +11,9 @@
 #
 
 galaxy_info:
-  role_name: "CHANGEME"
+  role_name: "ssh_config"
   author: "Matthew Ahrenstein"
-  description: "CHANGEME"
+  description: "Configure OpenSSH and the motd/issue.net on systems"
   company: "Route 1337, LLC"
   license: "license (MIT)"
   min_ansible_version: "2.4"
@@ -23,4 +23,8 @@ galaxy_info:
         - xenial
         - bionic
   galaxy_tags:
-    - CHANGEME
+    - ssh
+    - base
+    - system
+    - security
+    - ssh

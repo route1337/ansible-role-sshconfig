@@ -1,0 +1,29 @@
+---
+#
+# Project:: Ansible Role - SSH Config
+#
+# Copyright 2020, Route 1337, LLC, All Rights Reserved.
+#
+# Maintainers:
+# - Matthew Ahrenstein: matthew@route1337.com
+#
+# See LICENSE
+#
+
+# Deploy a standard login banner to motd and issue.net
+
+- name: Deploy the issue.net file
+  template:
+    src: 'issue.net.j2'
+    dest: '/etc/issue.net'
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Deploy the motd file
+  template:
+    src: 'motd.j2'
+    dest: '/etc/motd'
+    owner: root
+    group: root
+    mode: 0644
