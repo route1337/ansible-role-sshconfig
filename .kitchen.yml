@@ -24,6 +24,21 @@ verifier:
 platforms:
   - name: ubuntu-16.04
   - name: ubuntu-18.04
+  - name: centos-7
+    driver:
+      box: futureys/centos-8
+      box_url: futureys/centos-8
+    verifier:
+      sudo_command: sudo # Fixes a weird CentOS issue where the sudo syntax is sometimes wrong
+  - name: centos-8
+    driver:
+      box: futureys/centos-8
+      box_url: futureys/centos-8
+    verifier:
+      sudo_command: sudo # Fixes a weird CentOS issue where the sudo syntax is sometimes wrong
+
+transport:
+  max_ssh_sessions: 6 # This fixes the test suite sometimes failing to transfer over to CentOS VMs
 
 suites:
   - name: standard

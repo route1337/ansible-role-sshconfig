@@ -13,7 +13,7 @@
 galaxy_info:
   role_name: "ssh_config"
   author: "Matthew Ahrenstein"
-  description: "Configure OpenSSH and the motd/issue.net on systems"
+  description: "Configure OpenSSH and the motd/issue.net on Ubuntu and CentOS systems"
   company: "Route 1337, LLC"
   license: "license (MIT)"
   min_ansible_version: "2.4"
@@ -22,6 +22,10 @@ galaxy_info:
       versions:
         - xenial
         - bionic
+    - name: EL
+      versions:
+        - 7
+        - 8
   galaxy_tags:
     - ssh
     - base

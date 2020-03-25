@@ -13,6 +13,6 @@
 # Configure OpenSSH and the issue.net/motd
 
 - import_tasks: openssh.yml
-  when: ansible_distribution == 'Ubuntu'
+  when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'CentOS'
 - import_tasks: loginbanner.yml
-  when: ansible_distribution == 'Ubuntu'
+  when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'CentOS'
