@@ -23,4 +23,8 @@ PrintLastLog yes
 TCPKeepAlive no
 AllowTcpForwarding no
 Banner /etc/issue.net
+{% if ansible_distribution == "Ubuntu" %}
 Subsystem sftp /usr/lib/openssh/sftp-server
+{% else %}
+Subsystem sftp /usr/libexec/openssh/sftp-server
+{% endif %}

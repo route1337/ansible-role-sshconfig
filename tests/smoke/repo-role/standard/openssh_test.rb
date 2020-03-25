@@ -11,7 +11,7 @@
 
 # Verify the OpenSSH Standard configuration was deployed
 
-if os[:name] == 'ubuntu'
+if ['ubuntu', 'centos'].include?(os[:name])
 
   # Test if using the correct protocol
   describe file('/etc/ssh/sshd_config') do
@@ -132,11 +132,11 @@ if os[:name] == 'ubuntu'
   describe file('/etc/ssh/sshd_config') do
     its('content') { should match /Banner \/etc\/issue.net/ }
   end
+else
+  # Do nothing
+end
 
-  # Check to see if SFTP is configured
-  describe file('/etc/ssh/sshd_config') do
-    its('content') { should match /\/usr\/lib\/openssh\/sftp-server/ }
-  end
+if os[:name] == 'ubuntu'
 
   # Verify SSH daemon is enabled and running
   describe service('ssh') do
@@ -144,6 +144,23 @@ if os[:name] == 'ubuntu'
     it { should be_running }
   end
 
+  # Check to see if SFTP is configured
+  describe file('/etc/ssh/sshd_config') do
+    its(:content) { should match /\/usr\/lib\/openssh\/sftp-server/ }
+  end
+
+elsif os[:name] == 'centos'
+
+  # Verify SSH daemon is enabled and running
+  describe service('sshd') do
+    it { should be_enabled }
+    it { should be_running }
+  end
+
+  # Check to see if SFTP is configured
+  describe file('/etc/ssh/sshd_config') do
+    its(:content) { should match /\/usr\/libexec\/openssh\/sftp-server/ }
+  end
 else
   # Do nothing
 end

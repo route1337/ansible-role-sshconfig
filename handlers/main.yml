@@ -12,6 +12,7 @@
 
 # Handlers used for various tasks in this role
 
+# Restart SSH
 - name: restart ssh
   service:
     name: sshd

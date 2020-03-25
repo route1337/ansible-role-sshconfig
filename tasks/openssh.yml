@@ -12,7 +12,7 @@
 
 # Configure OpenSSH Server with either standard or hardened configs
 
-- name: Configure OpenSSH with the Standard configuration
+- name: (Ubuntu) Configure OpenSSH with the Standard configuration
   template:
     src: 'sshd_standard.j2'
     dest: '/etc/ssh/sshd_config'
@@ -23,7 +23,7 @@
   notify:
     - restart ssh
 
-- name: Configure OpenSSH with the Hardened configuration
+- name: (Ubuntu) Configure OpenSSH with the Hardened configuration
   template:
     src: 'sshd_hardened.j2'
     dest: '/etc/ssh/sshd_config'
