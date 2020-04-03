@@ -10,8 +10,6 @@
 # See LICENSE
 #
 
-# Testing variables for Linux Users
-
 # Testing using default variables by not configuring anything
 
 #ssh_config:
