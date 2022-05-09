@@ -11,7 +11,7 @@
 
 # Verify the login banner was deployed properly
 
-if ['ubuntu', 'centos'].include?(os[:name])
+if ['ubuntu'].include?(os[:name])
 
   # Check if /etc/issue.net is correct
   describe file('/etc/issue.net') do

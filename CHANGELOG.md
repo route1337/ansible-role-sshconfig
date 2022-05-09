@@ -2,6 +2,12 @@ Ansible Role - SSH Config: Changelog
 =====================================
 A list of all the changes made to this repo and the role it contains
 
+Version 1.3.0
+-------------
+
+1. Adjust SSH config to deny known bad Ciphers, MACs and KexAlgorithms
+2. Removed CentOS testing as CentOS is no longer being supported
+
 Version 1.2.2
 -------------
 
