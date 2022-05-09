@@ -11,7 +11,7 @@
 
 # Verify the OpenSSH Standard configuration was deployed
 
-if ['ubuntu', 'centos'].include?(os[:name])
+if ['ubuntu'].include?(os[:name])
 
   # Test if using the correct protocol
   describe file('/etc/ssh/sshd_config') do
@@ -132,11 +132,21 @@ if ['ubuntu', 'centos'].include?(os[:name])
   describe file('/etc/ssh/sshd_config') do
     its('content') { should match /Banner \/etc\/issue.net/ }
   end
-else
-  # Do nothing
-end
 
-if os[:name] == 'ubuntu'
+  # Verify the Cipher Suite choice is present
+  describe file('/etc/ssh/sshd_config') do
+    its('content') { should match /Ciphers aes128-ctr,aes192-ctr,aes256-ctr/ }
+  end
+
+  # Verify the MAC choice is present
+  describe file('/etc/ssh/sshd_config') do
+    its('content') { should match /MACs hmac-sha2-256,hmac-sha2-512/ }
+  end
+
+  # Verify the KexAlgorithms choice is present
+  describe file('/etc/ssh/sshd_config') do
+    its('content') { should match /KexAlgorithms ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group14-sha1,diffie-hellman-group-exchange-sha256/ }
+  end
 
   # Verify SSH daemon is enabled and running
   describe service('ssh') do
@@ -147,19 +157,6 @@ if os[:name] == 'ubuntu'
   # Check to see if SFTP is configured
   describe file('/etc/ssh/sshd_config') do
     its(:content) { should match /\/usr\/lib\/openssh\/sftp-server/ }
-  end
-
-elsif os[:name] == 'centos'
-
-  # Verify SSH daemon is enabled and running
-  describe service('sshd') do
-    it { should be_enabled }
-    it { should be_running }
-  end
-
-  # Check to see if SFTP is configured
-  describe file('/etc/ssh/sshd_config') do
-    its(:content) { should match /\/usr\/libexec\/openssh\/sftp-server/ }
   end
 else
   # Do nothing
