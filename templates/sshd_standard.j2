@@ -26,3 +26,7 @@ PrintLastLog yes
 TCPKeepAlive yes
 Banner /etc/issue.net
 Subsystem sftp /usr/lib/openssh/sftp-server
+{% if ansible_distribution_version >= "22.04" %}
+# A fix for Ubuntu 22.04+ because they deprecated ssh-rsa before most people will be ready for it
+PubkeyAcceptedAlgorithms +ssh-rsa
+{% endif %}

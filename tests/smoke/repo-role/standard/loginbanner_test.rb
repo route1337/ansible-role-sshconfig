@@ -1,7 +1,7 @@
 #
 # Project:: Ansible Role - SSH Config
 #
-# Copyright 2020, Route 1337, LLC, All Rights Reserved.
+# Copyright 2020, Route 1337 LLC, All Rights Reserved.
 #
 # Maintainers:
 # - Matthew Ahrenstein: matthew@route1337.com
@@ -18,7 +18,7 @@ if ['ubuntu'].include?(os[:name])
     it { should be_owned_by 'root' }
     it { should be_grouped_into 'root' }
     it { should be_mode 0644 }
-    its('content') { should match /Route 1337, LLC/ } # Verify the default company deployed
+    its('content') { should match /Route 1337 LLC/ } # Verify the default company deployed
     its('content') { should match /WARNING! Private Computer System/ } # Partial match for the one line warning
   end
 
@@ -28,7 +28,7 @@ if ['ubuntu'].include?(os[:name])
     it { should be_grouped_into 'root' }
     it { should be_mode 0644 }
     it { should_not be_symlink }
-    its('content') { should match /Route 1337, LLC/ } # Verify the default company deployed
+    its('content') { should match /Route 1337 LLC/ } # Verify the default company deployed
     its('content') { should match /WARNING! Private Computer System/ } # Partial match for the one line warning
   end
 

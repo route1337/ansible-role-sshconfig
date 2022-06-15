@@ -1,7 +1,7 @@
 #
 # Project:: Ansible Role - SSH Config
 #
-# Copyright 2020, Route 1337, LLC, All Rights Reserved.
+# Copyright 2020, Route 1337 LLC, All Rights Reserved.
 #
 # Maintainers:
 # - Matthew Ahrenstein: matthew@route1337.com
@@ -162,6 +162,13 @@ if ['ubuntu'].include?(os[:name])
   # Check to see if SFTP is configured
   describe file('/etc/ssh/sshd_config') do
     its(:content) { should match /\/usr\/lib\/openssh\/sftp-server/ }
+  end
+
+  if os[:release] >= "22.04"
+    # Check to see if ssh-rsa keys are permitted again
+    describe file('/etc/ssh/sshd_config') do
+      its(:content) { should match /PubkeyAcceptedAlgorithms \+ssh-rsa/ }
+    end
   end
 else
   # Do nothing

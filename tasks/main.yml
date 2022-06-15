@@ -2,7 +2,7 @@
 #
 # Project:: Ansible Role - SSH Config
 #
-# Copyright 2020, Route 1337, LLC, All Rights Reserved.
+# Copyright 2020, Route 1337 LLC, All Rights Reserved.
 #
 # Maintainers:
 # - Matthew Ahrenstein: matthew@route1337.com
@@ -13,6 +13,6 @@
 # Configure OpenSSH and the issue.net/motd
 
 - import_tasks: openssh.yml
-  when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'CentOS'
+  when: ansible_distribution == 'Ubuntu'
 - import_tasks: loginbanner.yml
-  when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'CentOS'
+  when: ansible_distribution == 'Ubuntu'
