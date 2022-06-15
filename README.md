@@ -4,7 +4,7 @@ This repo contains the SSH Config (ssh_config) Ansible role.
 
 What this role does
 -------------------
-This role configures OpenSSH with either a Standard, or Hardened configuration. Additionally it configures a fancy
+This role configures OpenSSH with either a Standard, or Hardened configuration. Additionally, it configures a fancy
 motd and issue.net for users that SSH in to the server with a rather boilerplate warning.
 
 1. Configure OpenSSH in either a Standard or Hardened config (The default is Standard)
@@ -24,7 +24,7 @@ The following variables are optional:
 
 1. `ssh_config.configuration` - Sets the SSH configuration to `Standard` or `Hardened`. If the string does not match `Hardened`
 it defaults to the Standard configuration
-2. `ssh_config.orgname` - Sets the company name shown in the login banner. If undefined the default is `Route 1337, LLC`
+2. `ssh_config.orgname` - Sets the company name shown in the login banner. If undefined the default is `Route 1337 LLC`
 
 Testing
 -------

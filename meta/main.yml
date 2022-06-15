@@ -2,7 +2,7 @@
 #
 # Project:: Ansible Role - SSH Config
 #
-# Copyright 2020, Route 1337, LLC, All Rights Reserved.
+# Copyright 2020, Route 1337 LLC, All Rights Reserved.
 #
 # Maintainers:
 # - Matthew Ahrenstein: matthew@route1337.com
@@ -13,20 +13,16 @@
 galaxy_info:
   role_name: "ssh_config"
   author: "Matthew Ahrenstein"
-  description: "Configure OpenSSH and the motd/issue.net on Ubuntu and CentOS systems"
-  company: "Route 1337, LLC"
+  description: "Configure OpenSSH and the motd/issue.net on Ubuntu systems"
+  company: "Route 1337 LLC"
   license: "license (MIT)"
   min_ansible_version: "2.4"
   platforms:
     - name: Ubuntu
       versions:
-        - xenial
         - bionic
         - focal
-    - name: EL
-      versions:
-        - 7
-        - 8
+        - jammy
   galaxy_tags:
     - ssh
     - base

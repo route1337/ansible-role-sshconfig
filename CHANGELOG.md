@@ -2,6 +2,15 @@ Ansible Role - SSH Config: Changelog
 =====================================
 A list of all the changes made to this repo and the role it contains
 
+Version 1.4.0
+-------------
+
+1. Added Ubuntu 22.04 support
+   1. Adding `PubkeyAcceptedAlgorithms +ssh-rsa` as ssh-rsa keys are still in use in many places.
+2. Removed Ubuntu 16.04 support
+3. Removed some remnants of CentOS code
+4. Kitchen will now use AWS for testing (A change forced by VirtualBox not supporting Apple Silicon)
+
 Version 1.3.0
 -------------
 
