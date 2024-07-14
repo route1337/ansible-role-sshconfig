@@ -2,6 +2,11 @@ Ansible Role - SSH Config: Changelog
 =====================================
 A list of all the changes made to this repo and the role it contains
 
+Version 1.5.1
+-------------
+
+1. Fix SSH service name
+
 Version 1.5.0
 -------------
 
