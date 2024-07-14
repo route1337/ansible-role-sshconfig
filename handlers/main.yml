@@ -15,5 +15,5 @@
 # Restart SSH
 - name: restart ssh
   service:
-    name: sshd
+    name: ssh
     state: restarted
