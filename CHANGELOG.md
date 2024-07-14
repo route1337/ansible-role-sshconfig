@@ -2,6 +2,12 @@ Ansible Role - SSH Config: Changelog
 =====================================
 A list of all the changes made to this repo and the role it contains
 
+Version 1.5.0
+-------------
+
+1. Added Ubuntu 24.04 support
+2. Removed Ubuntu 18.04 support
+
 Version 1.4.0
 -------------
 
