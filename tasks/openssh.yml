@@ -12,24 +12,24 @@
 
 # Configure OpenSSH Server with either standard or hardened configs
 
-- name: (Ubuntu) Configure OpenSSH with the Standard configuration
-  template:
+- name: Configure OpenSSH with the Standard configuration
+  ansible.builtin.template:
     src: 'sshd_standard.j2'
     dest: '/etc/ssh/sshd_config'
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
+    validate: '/usr/sbin/sshd -t -f %s'
   when: ssh_config.configuration != "Hardened"
-  notify:
-    - restart ssh
+  notify: Restart ssh
 
-- name: (Ubuntu) Configure OpenSSH with the Hardened configuration
-  template:
+- name: Configure OpenSSH with the Hardened configuration
+  ansible.builtin.template:
     src: 'sshd_hardened.j2'
     dest: '/etc/ssh/sshd_config'
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
+    validate: '/usr/sbin/sshd -t -f %s'
   when: ssh_config.configuration == "Hardened"
-  notify:
-    - restart ssh
+  notify: Restart ssh

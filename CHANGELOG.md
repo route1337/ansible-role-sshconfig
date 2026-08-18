@@ -1,6 +1,29 @@
 Ansible Role - SSH Config: Changelog
-=====================================
+====================================
 A list of all the changes made to this repo and the role it contains
+
+Version 1.6.0
+-------------
+
+1. Test Kitchen removed
+2. Added Ubuntu 26.04 support
+3. Removed support for anything below 24.04
+   1. Role now assumes Ubuntu only without running checks
+4. Removed deprecated directives
+5. Updated directives
+   1. `ChallengeResponseAuthentication` replaced with `KbdInteractiveAuthentication`
+   2. `PermitRootLogin without-password` replaced with the current `prohibit-password` spelling
+6. Removed `PubkeyAcceptedAlgorithms +ssh-rsa`
+   1. RSA keys are still accepted, now signed with SHA-2 rather than SHA-1
+7. Modernized the cipher, key exchange and MAC lists on both profiles
+   1. Post-quantum `mlkem768x25519-sha256` is used on Ubuntu 26.04 and newer
+   2. `diffie-hellman-group14-sha1` removed
+8. `sshd -t` now validates the config before it is written
+9. All tasks now use fully qualified collection names
+10. Ubuntu's dynamic motd is now suppressed
+    1. Scripts in `/etc/update-motd.d/` have their execute bit removed
+    2. `ssh_config.motd_keep` controls the exceptions and defaults to `98-reboot-required`
+    3. The `motd-news` fetcher is disabled and its timer masked
 
 Version 1.5.1
 -------------

@@ -12,8 +12,7 @@
 
 # Handlers used for various tasks in this role
 
-# Restart SSH
-- name: restart ssh
-  service:
+- name: Restart ssh
+  ansible.builtin.service:
     name: ssh
     state: restarted
