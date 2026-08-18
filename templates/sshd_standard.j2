@@ -1,32 +1,37 @@
-ChallengeResponseAuthentication no
 UsePAM yes
-Protocol 2
-Ciphers aes128-ctr,aes192-ctr,aes256-ctr
-KexAlgorithms ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group14-sha1,diffie-hellman-group-exchange-sha256
-MACs hmac-sha2-256,hmac-sha2-512
-UsePrivilegeSeparation yes
-KeyRegenerationInterval 3600
-ServerKeyBits 2048
 SyslogFacility AUTH
 LogLevel VERBOSE
 LoginGraceTime 120
-PermitRootLogin without-password
 StrictModes yes
-RsaAuthentication yes
+
+# Authentication
+PermitRootLogin prohibit-password
 PubkeyAuthentication yes
 PasswordAuthentication no
-IgnoreRhosts yes
-RhostsRsaAuthentication no
-HostBasedAuthentication no
+KbdInteractiveAuthentication no
 PermitEmptyPasswords no
+IgnoreRhosts yes
+HostbasedAuthentication no
+MaxAuthTries 6
+
+# RSA keys remain permitted, signed with SHA-2. SHA-1 (ssh-rsa) is not offered.
+PubkeyAcceptedAlgorithms ssh-ed25519,sk-ssh-ed25519@openssh.com,rsa-sha2-512,rsa-sha2-256
+
+{% if ansible_facts['distribution_version'] is version('26.04', '>=') %}
+# mlkem768x25519-sha256 requires OpenSSH 9.9+, which lands in Ubuntu 26.04
+KexAlgorithms mlkem768x25519-sha256,sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512
+{% else %}
+KexAlgorithms sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512
+{% endif %}
+Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
+MACs hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,umac-128-etm@openssh.com
+
+# Session
 X11Forwarding yes
 X11DisplayOffset 10
 PrintMotd no
 PrintLastLog yes
 TCPKeepAlive yes
 Banner /etc/issue.net
+
 Subsystem sftp /usr/lib/openssh/sftp-server
-{% if ansible_distribution_version >= "22.04" %}
-# A fix for Ubuntu 22.04+ because they deprecated ssh-rsa before most people will be ready for it
-PubkeyAcceptedAlgorithms +ssh-rsa
-{% endif %}

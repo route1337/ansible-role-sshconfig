@@ -12,7 +12,8 @@
 
 # Configure OpenSSH and the issue.net/motd
 
-- import_tasks: openssh.yml
-  when: ansible_distribution == 'Ubuntu'
-- import_tasks: loginbanner.yml
-  when: ansible_distribution == 'Ubuntu'
+- name: Configure OpenSSH
+  ansible.builtin.import_tasks: openssh.yml
+
+- name: Configure the login banner
+  ansible.builtin.import_tasks: loginbanner.yml

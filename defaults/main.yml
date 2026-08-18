@@ -15,3 +15,5 @@
 ssh_config:
   configuration: "Standard"
   orgname: "Route 1337 LLC"
+  motd_keep:
+    - 98-reboot-required

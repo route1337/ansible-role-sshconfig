@@ -12,20 +12,21 @@
 
 galaxy_info:
   role_name: "ssh_config"
+  namespace: route1337
   author: "Matthew Ahrenstein"
   description: "Configure OpenSSH and the motd/issue.net on Ubuntu systems"
   company: "Route 1337 LLC"
-  license: "license (MIT)"
-  min_ansible_version: "2.8"
+  license: "MIT"
+  min_ansible_version: "2.15"
   platforms:
     - name: Ubuntu
       versions:
-        - focal
-        - jammy
         - noble
+        - resolute
   galaxy_tags:
     - ssh
     - base
     - system
     - security
-    - ssh
+
+dependencies: []

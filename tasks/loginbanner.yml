@@ -13,17 +13,58 @@
 # Deploy a standard login banner to motd and issue.net
 
 - name: Deploy the issue.net file
-  template:
+  ansible.builtin.template:
     src: 'issue.net.j2'
     dest: '/etc/issue.net'
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
 
 - name: Deploy the motd file
-  template:
+  ansible.builtin.template:
     src: 'motd.j2'
     dest: '/etc/motd'
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
+
+- name: Find the dynamic motd scripts
+  ansible.builtin.find:
+    paths: /etc/update-motd.d
+    file_type: file
+  register: motd_scripts
+
+- name: Set the dynamic motd script permissions
+  ansible.builtin.file:
+    path: '{{ item.path }}'
+    mode: "{{ '0755' if item.path | default('') | basename in motd_keep else '0644' }}"
+  loop: "{{ motd_scripts.files }}"
+  loop_control:
+    label: '{{ item.path | basename }}'
+  vars:
+    motd_keep: "{{ ssh_config.motd_keep | default(['98-reboot-required']) }}"
+
+- name: Check for the motd-news configuration
+  ansible.builtin.stat:
+    path: /etc/default/motd-news
+  register: motd_news_conf
+
+- name: Disable the motd-news fetcher
+  ansible.builtin.lineinfile:
+    path: /etc/default/motd-news
+    regexp: '^ENABLED='
+    line: 'ENABLED=0'
+  when: motd_news_conf.stat.exists
+
+- name: Check for the motd-news timer
+  ansible.builtin.stat:
+    path: /usr/lib/systemd/system/motd-news.timer
+  register: motd_news_timer
+
+- name: Mask the motd-news timer
+  ansible.builtin.systemd_service:
+    name: motd-news.timer
+    state: stopped
+    enabled: false
+    masked: true
+  when: motd_news_timer.stat.exists
